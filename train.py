@@ -35,6 +35,7 @@ import torchvision.datasets as datasets
 import torchvision.models as models
 import torchvision.transforms as transforms
 
+from libs.models import alexnet
 import pytorch_lightning as pl
 from pl_examples import cli_lightning_logo
 from pytorch_lightning.core import LightningModule
@@ -48,13 +49,6 @@ class ImageNetLightningModel(LightningModule):
     )
     """
 
-    # pull out resnet names from torchvision models
-    MODEL_NAMES = sorted(
-        name
-        for name in models.__dict__
-        if name.islower() and not name.startswith("__") and callable(models.__dict__[name])
-    )
-
     def __init__(
         self,
         data_path: str,
@@ -65,6 +59,7 @@ class ImageNetLightningModel(LightningModule):
         weight_decay: float = 1e-4,
         batch_size: int = 4,
         workers: int = 2,
+        sparsity: float =0,
         **kwargs,
     ):
         super().__init__()
@@ -77,7 +72,8 @@ class ImageNetLightningModel(LightningModule):
         self.data_path = data_path
         self.batch_size = batch_size
         self.workers = workers
-        self.model = models.__dict__[self.arch](pretrained=self.pretrained)
+        print("Sparsity value is: ",sparsity)
+        self.model = alexnet(sparsity=sparsity)
 
     def forward(self, x):
         return self.model(x)
@@ -177,14 +173,15 @@ class ImageNetLightningModel(LightningModule):
     @staticmethod
     def add_model_specific_args(parent_parser):  # pragma: no-cover
         parser = parent_parser.add_argument_group("ImageNetLightningModel")
-        parser.add_argument(
-            "-a",
-            "--arch",
-            metavar="ARCH",
-            default="resnet18",
-            choices=ImageNetLightningModel.MODEL_NAMES,
-            help=("model architecture: " + " | ".join(ImageNetLightningModel.MODEL_NAMES) + " (default: resnet18)"),
-        )
+        #parser.add_argument(
+        #    "-a",
+        #    "--arch",
+        #    metavar="ARCH",
+        #    default="resnet18",
+        #    choices=ImageNetLightningModel.MODEL_NAMES,
+        #    help=("model architecture: " + " | ".join(ImageNetLightningModel.MODEL_NAMES) + " (default: resnet18)"),
+        #)
+
         parser.add_argument(
             "-j", "--workers", default=4, type=int, metavar="N", help="number of data loading workers (default: 4)"
         )
@@ -209,6 +206,15 @@ class ImageNetLightningModel(LightningModule):
             metavar="W",
             help="weight decay (default: 1e-4)",
             dest="weight_decay",
+        )
+        parser.add_argument(
+            "--sp",
+            "--sparsity",
+            default=0,
+            type=float,
+            metavar="W",
+            help="Sparsity parameter",
+            dest="sparsity",
         )
         parser.add_argument("--pretrained", dest="pretrained", action="store_true", help="use pre-trained model")
         return parent_parser
