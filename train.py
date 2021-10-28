@@ -73,7 +73,7 @@ class ImageNetLightningModel(LightningModule):
         self.batch_size = batch_size
         self.workers = workers
         print("Sparsity value is: ",sparsity)
-        self.model = alexnet(sparsity=sparsity)
+        self.model = alexnet(sparsity=sparsity,num_classes=200)
 
     def forward(self, x):
         return self.model(x)
