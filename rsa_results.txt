@@ -1,0 +1,136 @@
+[{
+	'subject': 'CSI1',
+	'sparsity': 0,
+	'rdm-pearson': array([
+		[0.82377]
+	]),
+	'rdm-kendall': array([
+		[0.00449321]
+	])
+}, {
+	'subject': 'CSI1',
+	'sparsity': 0.2,
+	'rdm-pearson': array([
+		[0.83532443]
+	]),
+	'rdm-kendall': array([
+		[0.00384525]
+	])
+}, {
+	'subject': 'CSI1',
+	'sparsity': 0.4,
+	'rdm-pearson': array([
+		[0.8327934]
+	]),
+	'rdm-kendall': array([
+		[0.00437566]
+	])
+}, {
+	'subject': 'CSI1',
+	'sparsity': 0.6,
+	'rdm-pearson': array([
+		[0.82516761]
+	]),
+	'rdm-kendall': array([
+		[0.00426965]
+	])
+}, {
+	'subject': 'CSI1',
+	'sparsity': 0.8,
+	'rdm-pearson': array([
+		[0.83798004]
+	]),
+	'rdm-kendall': array([
+		[0.00364096]
+	])
+}, {
+	'subject': 'CSI2',
+	'sparsity': 0,
+	'rdm-pearson': array([
+		[0.81974423]
+	]),
+	'rdm-kendall': array([
+		[-0.00880515]
+	])
+}, {
+	'subject': 'CSI2',
+	'sparsity': 0.2,
+	'rdm-pearson': array([
+		[0.83113154]
+	]),
+	'rdm-kendall': array([
+		[-0.00862618]
+	])
+}, {
+	'subject': 'CSI2',
+	'sparsity': 0.4,
+	'rdm-pearson': array([
+		[0.82881335]
+	]),
+	'rdm-kendall': array([
+		[-0.00692286]
+	])
+}, {
+	'subject': 'CSI2',
+	'sparsity': 0.6,
+	'rdm-pearson': array([
+		[0.82071987]
+	]),
+	'rdm-kendall': array([
+		[-0.00810513]
+	])
+}, {
+	'subject': 'CSI2',
+	'sparsity': 0.8,
+	'rdm-pearson': array([
+		[0.83246743]
+	]),
+	'rdm-kendall': array([
+		[-0.00998138]
+	])
+}, {
+	'subject': 'CSI3',
+	'sparsity': 0,
+	'rdm-pearson': array([
+		[0.7893953]
+	]),
+	'rdm-kendall': array([
+		[-0.00763396]
+	])
+}, {
+	'subject': 'CSI3',
+	'sparsity': 0.2,
+	'rdm-pearson': array([
+		[0.80063673]
+	]),
+	'rdm-kendall': array([
+		[-0.00615933]
+	])
+}, {
+	'subject': 'CSI3',
+	'sparsity': 0.4,
+	'rdm-pearson': array([
+		[0.79830083]
+	]),
+	'rdm-kendall': array([
+		[-0.00590778]
+	])
+}, {
+	'subject': 'CSI3',
+	'sparsity': 0.6,
+	'rdm-pearson': array([
+		[0.7908427]
+	]),
+	'rdm-kendall': array([
+		[-0.00493562]
+	])
+}, {
+	'subject': 'CSI3',
+	'sparsity': 0.8,
+	'rdm-pearson': array([
+		[0.80255151]
+	]),
+	'rdm-kendall': array([
+		[-0.00707625]
+	])
+}]

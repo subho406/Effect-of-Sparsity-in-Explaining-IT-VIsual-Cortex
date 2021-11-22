@@ -25,6 +25,7 @@ import os
 from argparse import ArgumentParser, Namespace
 
 import torch
+import wandb
 import torch.nn.functional as F
 import torch.nn.parallel
 import torch.optim as optim
@@ -37,6 +38,7 @@ import torchvision.transforms as transforms
 
 from libs.models import alexnet
 import pytorch_lightning as pl
+from pytorch_lightning.loggers import WandbLogger
 from pl_examples import cli_lightning_logo
 from pytorch_lightning.core import LightningModule
 
@@ -232,7 +234,9 @@ def main(args: Namespace) -> None:
         args.workers = int(args.workers / max(1, args.gpus))
 
     model = ImageNetLightningModel(**vars(args))
-    trainer = pl.Trainer.from_argparse_args(args)
+    wandb.init(id=args.id,resume=True)
+    wandb_logger = WandbLogger(name=args.name,id=args.id,project="CMPUT653_Project")
+    trainer = pl.Trainer.from_argparse_args(args,logger=wandb_logger)
 
     if args.evaluate:
         trainer.test(model)
@@ -248,6 +252,8 @@ def run_cli():
         "-e", "--evaluate", dest="evaluate", action="store_true", help="evaluate model on validation set"
     )
     parent_parser.add_argument("--seed", type=int, default=42, help="seed for initializing training.")
+    parent_parser.add_argument("--name",default=None,help="Name for this run.")
+    parent_parser.add_argument("--id",default=None,help="ID for this run.")
     parser = ImageNetLightningModel.add_model_specific_args(parent_parser)
     parser.set_defaults(profiler="simple", deterministic=True, max_epochs=90)
     args = parser.parse_args()
